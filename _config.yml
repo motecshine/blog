@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: NOOB PHPER
 subtitle:
 description:
 keywords:
-author: John Doe
+author:  朱海峰
 language:
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: httsp://motecshine.github.io
+url: https://motecshine.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
