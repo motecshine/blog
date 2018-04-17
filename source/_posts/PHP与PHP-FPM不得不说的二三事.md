@@ -17,14 +17,15 @@ tags: php
  
   PHP本身不像golang 那样实现HTTP协议(第三方库 Swoole 有实现)，而是实现了 FastCGI协议。
   
-  请求流程：
+  请求流程， 如图所示：
   
   Client ---[GET /xxx?a=1]----> Web Server-------->应用程序
  
 ## PHP-FPM 工作原理
 
 ### 工作流程
-
+ FPM 是一个多进程模型，他由一个Master进程和多个Worker进程组成。Master在初始化时会建立一个socket，但是不会接受和处理请求，而是由fork出来的子进程完成这些工作。
+ Master主要负责管理Worker进程。如图所示：
 #### master 进程
 
 #### multiWorker 进程
