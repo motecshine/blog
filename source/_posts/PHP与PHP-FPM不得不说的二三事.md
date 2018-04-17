@@ -23,4 +23,11 @@ tags: php
  
 ## PHP-FPM 工作原理
 
+### 工作流程
+
+#### master 进程
+
+#### multiWorker 进程
+
+
 ## NGINX与PHP-FPM
