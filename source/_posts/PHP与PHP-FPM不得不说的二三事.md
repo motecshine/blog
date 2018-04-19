@@ -21,10 +21,14 @@ tags: php
 
 ### 三种进程管理方式
 - 静态模式:
+  在启动的时候 master根据pm.max_children配置fork出相应数量地worker进程，woker的数量是固定的。
 
-- 动态模式：
+- 动态模式(dynamic)：
+  这种模式应该是最常用的， fpm 启动时会根据pm.start_servers配置初始化一定数量的worker。 如果master发现空闲woker低于pm.min_spare_servers配置数则会fork出更多的woker进程，但是不会超过pm.max_spare_servers, 如果master发现了空闲的woker 大于 pm.max_spare_servers 则会杀死部分woker。
 
-- 按需：
+- 按需(ondemand)：
+  启动时，不分配woker，请求来了 master 才会fork，但是不会超过pm.max_children。请求流程完了也不会立马kill woker，当woker的空闲时间超过pm.oricess_idle_timeout才会被杀死
+
 
 ### 工作流程
  FPM 是一个多进程模型，他由一个Master进程和多个Worker进程组成。Master在初始化时会建立一个socket，但是不会接受和处理请求，而是由fork出来的子进程完成这些工作。
