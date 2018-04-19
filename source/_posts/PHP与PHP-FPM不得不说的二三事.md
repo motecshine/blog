@@ -19,6 +19,45 @@ tags: php
 
 ## PHP-FPM 工作原理
 
+```c
+fpm.c
+/*	children: return listening socket
+	parent: never return */
+int fpm_run(int *max_requests) /* {{{ */
+{
+	struct fpm_worker_pool_s *wp;
+
+	/* create initial children in all pools */
+	for (wp = fpm_worker_all_pools; wp; wp = wp->next) {
+		int is_parent;
+
+		is_parent = fpm_children_create_initial(wp);
+
+		if (!is_parent) {
+			goto run_child;
+		}
+
+		/* handle error */
+		if (is_parent == 2) {
+			fpm_pctl(FPM_PCTL_STATE_TERMINATING, FPM_PCTL_ACTION_SET);
+			fpm_event_loop(1);
+		}
+	}
+
+	/* run event loop forever */
+	fpm_event_loop(0);
+
+run_child: /* only workers reach this point */
+
+	fpm_cleanups_run(FPM_CLEANUP_CHILD);
+
+	*max_requests = fpm_globals.max_requests;
+	return fpm_globals.listening_socket;
+}
+/* }}} */
+
+```
+
 ### 三种进程管理方式
 - 静态模式:
   在启动的时候 master根据pm.max_children配置fork出相应数量地worker进程，woker的数量是固定的。
@@ -40,7 +79,7 @@ tags: php
 
 
 #### master 进程
-master在调用fpm_run()后不再返回，而是进入fpm_event_loop(),这个方法会循环处理注册的几个I/O事件。
+从代码中可以看到 master在调用fpm_run()后不再返回，而是进入fpm_event_loop(),这个方法会循环处理注册的几个I/O事件。
 
 #### multi worker 进程
 woker的工作就是 争抢处理请求，争抢成功后，解析FastCGI协议，获得服务器真实的php脚本地址，然后编译执行脚本，但是woker进程是阻塞的，这样是为了简单粗暴的解决进程资源安全问题。
@@ -55,4 +94,7 @@ woker的工作就是 争抢处理请求，争抢成功后，解析FastCGI协议�
 
 - 收尾:  由php_request_shutdown()完成，并且调用每个扩展的PHP_RSHUTDOWN_FUNCTION()。
 
-## NGINX与PHP-FPM
+## PHP-FPM 配置与优化
+* 不讲apache与php-fpm 我用的不多，没有深入了解过。
+
+这里只讲
