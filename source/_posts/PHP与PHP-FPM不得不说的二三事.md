@@ -5,7 +5,8 @@ tags: php
 ---
 
 ## 前言
-    说起PHP，大家肯定对PHP-FPM也不陌生，因为如果做Web的话经常与它打交道，公司新建blog，我来抛砖引玉，文章有错误的地方欢迎大家指正。
+  说起PHP，大家肯定对PHP-FPM也不陌生，因为如果做Web的话经常与它打交道，公司新建blog，我来抛砖引玉，文章有错误的地方欢迎大家指正。
+  可能是一个系列将从 php-fpm讲起，会针对 ZendVM  词法编译，语法编译，粗暴的zend_mm和gc，zend_vm重要的数据结构(zend_array(php5 是hashtable)， zval)
 
 ## SAPI是什么？
   `SAPI` 是PHP框架的接口层，他是进入PHP内部的入口，其中我们使用频率比较多的几个: CLI, PHP-FPM,  ApacheHandler2(php 5.6以前经常使用,  php-ng 以后从官方的标准SAPI库中移除) ，都实现了SAPI Interface。
@@ -17,7 +18,6 @@ tags: php
   FPM 就是解析和管理FastCGI Pool
 
 ## PHP-FPM 工作原理
-
 
 ### 三种进程管理方式
 - 静态模式:
