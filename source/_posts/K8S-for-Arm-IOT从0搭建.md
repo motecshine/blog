@@ -61,3 +61,62 @@ cat > ca-config.json <<EOF
 }
 EOF
 ```
+### 创建 CA 证书签名请求
+```
+ca-csr.json
+{
+  "CN": "kubernetes",
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+    {
+      "C": "CN",
+      "ST": "BeiJing",
+      "L": "BeiJing",
+      "O": "k8s",
+      "OU": "System"
+    }
+  ],
+    "ca": {
+       "expiry": "87600h"
+    }
+}
+```
+
+```shell
+
+cfssl gencert -initca ca-csr.json | cfssljson -bare ca
+ls ca*
+ca-config.json  ca.csr  ca-csr.json  ca-key.pem  ca.pem
+```
+
+## 创建admin证书
+
+```shell
+mkdir /root/ssl
+cd /root/ssl
+cfssl print-defaults config > config.json
+cfssl print-defaults csr > csr.json
+cat > ca-config.json <<EOF
+{
+  "signing": {
+    "default": {
+      "expiry": "87600h"
+    },
+    "profiles": {
+      "kubernetes": {
+        "usages": [
+            "signing",
+            "key encipherment",
+            "server auth",
+            "client auth"
+        ],
+        "expiry": "87600h"
+      }
+    }
+  }
+}
+EOF
+```
