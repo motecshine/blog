@@ -55,7 +55,7 @@ index_generator:
   
 # Category & Tag
 default_category: categories
-category_map: /categories
+category_map:
 tag_map:
 
 # Date / Time format
