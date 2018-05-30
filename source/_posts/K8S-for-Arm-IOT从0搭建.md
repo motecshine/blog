@@ -12,7 +12,7 @@ categories:
 - kuber-server在电脑(archlinux)上搭建(1个etcd集群， kuber-manager-controller, kuber-scheduler, kube-proxy, kuber-apiserver)
 - kuber-client 在Rasberry PI3（OS:Raspbian）上搭建(flannel, kubelet, docker-1.5.1, kube-proxy, ingress-traefic)
 
-参照[https://jimmysong.io/kubernetes-handbook/practice/create-tls-and-secret-key.html]
+> 教程参照:[https://jimmysong.io/kubernetes-handbook]
 
 # 创建TSL证书和密钥
 ## 下载cfssl
