@@ -8,8 +8,8 @@ subtitle:
 description:
 keywords:
 author:  朱海峰
-language:
-timezone:
+language: zh-CN
+timezone: 
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -54,8 +54,8 @@ index_generator:
   order_by: -date
   
 # Category & Tag
-default_category: uncategorized
-category_map:
+default_category: categories
+category_map: /categories
 tag_map:
 
 # Date / Time format

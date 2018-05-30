@@ -2,6 +2,8 @@
 title: K8S FOR IOT的大胆猜想
 date: 2018-05-29 16:33:46
 tags: k8s arm iot
+categories: 
+- k8s
 ---
 
 # 前言
