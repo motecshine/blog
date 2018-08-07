@@ -1,0 +1,84 @@
+
+# 联系方式
+
+- 手机：18502922314  
+- Email：shinemotec@gmail.com 
+- QQ/微信号：18502922314
+
+
+# 个人信息
+
+ - 朱海峰/男/1993 
+ - 专科肄业/西安工业大学软件工程  本科/西安科技大学(成考本科在读) 
+ - 工作年限：3年
+ - 技术博客：http://www.noob-phper.com 或 https://motecshine.github.io
+ - Github：http://github.com/motecshine
+
+ - 期望职位：PHP高级程序员，DevOps
+ - 期望薪资：税前月薪15k~20k，特别喜欢的公司可例外
+ - 期望城市：北京 / 西安
+
+
+# 工作经历
+
+## 西安艾润物联 （ 2017年6月 ~ 2018年至今 ）
+
+### 西安机动车平台项目(6月~9月)
+我在此项目负责：
+- 版本迭代
+- 与第三方硬件设备对接
+- 平台维护
+
+### 车场运维管理平台(9月～ 12月)
+我在此项目负责：
+- 重构后端逻辑架构(yii2)
+- 重构前端配置(vuejs)
+- 建立前后端测试环境，灰度发布环境
+- 基于WebSocket + Golang + 通话设备，优化车场与运维人员的通讯流程
+
+### 平台中间件组(1月～至今)
+我在此项目负责：
+- 建立基于公司业务的kubernetes PaaS平台
+- 建立基于公司业务的日志平台(Filebeat + Kafka + Elasticsearch)
+- 第三方上报程序的编写(golang)
+-  存储服务中间件开发
+
+### 其他
+- 咸阳机场硬件设备状态处理程序
+- 第三方车场对接以及上报
+- 平台迁移到新架构(k8s)协负责人
+
+## 北京灵析360 （ 2016年10月 ~ 2017年5月 ）
+
+### 灵析项目（SaaS应用） 
+我在此项目负责：
+- 新Feature开发
+- 平台SOP
+- 日常功能维护 
+
+## 其他 (2015年5月- 2016年8月)
+在这两个公司之前，是在一家创业型外包公司工作。
+
+# 开源项目和作品
+## 开源项目
+  - [PHP-Design-Patterns 一个用C扩展实现的设计模式](https://github.com/motecshine/php-ext-design-patterns)
+  - [Excel 导出扩展](https://github.com/motecshine/ExportExcel)
+    
+# 技能清单
+以下均为我熟练使用的技能
+
+- Web开发：PHP/Golang/C
+- Web框架：ThinkPHP/Yaf/Yii/Lavarel/iris/Gin
+- 前端框架：Bootstrap
+- 数据库相关：MySQL/TiDB
+- 版本管理、文档和自动化部署工具：Svn/Git/PHPDoc/Phing/Composer
+- 单元测试：PHPUnit/SimpleTest/Qunit
+- 云和开放平台：Kubernetes 
+
+# 其他
+- 熟悉ZendVM工作原理
+- 熟悉PHP-FPM 工作原理，能快速定位性能问题
+- 熟悉PHP底层扩展开发
+- 熟悉PSR规范
+- 熟悉Composer自动加载流程
+      
