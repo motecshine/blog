@@ -154,7 +154,7 @@ spec:
             cpu: 50m
             memory: 50Mi
         ports:
-        - name: ivp-nginx
+        - name: laravel-nginx
           containerPort: 80 # 暴露Endpoint
         volumeMounts:
         - mountPath: /data/code
@@ -240,4 +240,4 @@ cd laravel-k8s-config && kubectl create -f .
 
 简单的介绍了如何创建一个Web应用，这仅仅是个开始，`Kubernetes`背后是一个庞大的生态环境, `CI，CD，ELK(EFK), APM`，让我们一点点揭开它神秘的面纱。
 
-下一篇将`Kubenetes`基于`EFK`日志收集平台。
+这里挂载日志到`Host Path` 会有并发写入的问题, 下一篇将`Kubenetes`基于`EFK`日志收集平台，并且给出这个问题的解决方案。
