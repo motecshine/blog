@@ -3,7 +3,7 @@ title: 深入浅出Rust Future - Part 1
 date: 2018-12-02 16:02:32
 tags: Rust Future
 ---
-
+译自[Rust futures: an uneducated, short and hopefully not boring tutorial - Part 1](https://dev.to/mindflavor/rust-futures-an-uneducated-short-and-hopefully-not-boring-tutorial---part-1-3k3)
 # Intro
 
 如果你是一个程序员并且也喜欢Rust这门语言, 那么你应该经常在社区听到讨论`Future` 这个库的声音, 一些很优秀的`Rust Crates`都使用了`Future` 所以我们也应该对它有足够的了解并且使用它. 但是大多数程序员很难理解`Future`到底是怎么工作的, 当然有官方 `Crichton's tutorial`这样的教程, 虽然很完善, 但我还是很难理解并把它付诸实践.
