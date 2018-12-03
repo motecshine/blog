@@ -60,7 +60,6 @@ println!("{:?}", retval);
 注意这里我们`unwrap`的是`run`方法，而不是`my_fut`.
 看起来真的很简单。
 
-
 ## Chaining
 `future`一个很重要的特性就是能够把其他的`future`组织起来形成一个`chain`. 举个栗子:
 
@@ -120,9 +119,8 @@ println!("{:?}", retval2);
 
 第二行代码,与之前的相同: 我们调用`Reactor run()`, 要求执行`chained_future`并给出结果。
 
-当然我们可以通过这种方式将无数个`future`打包成一个`chain`, 不要去担心性能问题, 因为`future chain`是 `zero cost`(出发你因为某种原因没有使用`Box`)。
-
-> RUST `borrow checked`可能让你的`future chain` 写起来不是那么的轻松，所以你可以尝试`move`你的参数变量。
+当然我们可以通过这种方式将无数个`future`打包成一个`chain`, 不要去担心性能问题, 因为`future chain`是 `zero cost`.
+> RUST `borrow checked`可能让你的`future chain` 写起来不是那么的轻松，所以你可以尝试`move`你的参数变量.
 
 ## Mixing futures and plain functions
 
@@ -208,4 +206,4 @@ println!("fut_generic_own == {}", retval);
 ```
 
 
-阅读到现在你可能对`future`应该有所了解了， 在这边文章里你可能注意到我没有使用`&`, 并且仅使用函数自身的值。这是因为使用`impl Future`，生命周期的行为并不相同，我将在下一篇文章中解释如何使用它们。在下一篇文章中我们也会讨论如何在`future chain`处理错误和使用awit!()宏。
+阅读到现在你可能对`future`应该有所了解了， 在这边文章里你可能注意到我没有使用`&`, 并且仅使用函数自身的值。这是因为使用`impl Future`，生命周期的行为并不相同，我将在下一篇文章中解释如何使用它们。在下一篇文章中我们也会讨论如何在`future chain`处理错误和使用await!()宏。
