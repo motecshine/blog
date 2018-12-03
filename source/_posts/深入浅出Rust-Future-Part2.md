@@ -112,7 +112,7 @@ error[E0271]: type mismatch resolving `<impl futures::Future as futures::IntoFut
                found type `errors::ErrorA`
 ```
 
-这个报错非常明显, 编译器期待我们使用`ErrorB`但是我们给了一个`ErrorAS`。
+这个报错非常明显, 编译器期待我们使用`ErrorB`但是我们给了一个`ErrorA`。
 
 >原则2: 当我们组织`Future Chain`时，第一个错误类型必须与最后一个`future`返回的错误类型一致.(When chaining futures, the first function error type must be the same as the chained one.)
 
@@ -132,7 +132,7 @@ let retval = reactor.run(future).unwrap_err();
 println!("error chain == {:?}", retval);
 ```
 
-如果我们现在编译并运行示例，那将是输出：
+如果我们现在编译并运行示例，将会输出：
 
 ```RUST
 mapping ErrorA into ErrorB
