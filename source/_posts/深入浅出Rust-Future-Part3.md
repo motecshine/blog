@@ -51,7 +51,6 @@ impl WaitForIt {
     }
 }
 
-```RUST
 impl Future for WaitForIt {
     type Item = String;
     type Error = Box<Error>;
@@ -107,7 +106,6 @@ if self.until < now {
 ```RUST
 Ok(Async::NotReady(.......)) // 还没完成
 Ok(Async::Ready(......)) // 完成了
-
 ```
 
 让我们来实现上述的方法：
