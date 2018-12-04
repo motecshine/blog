@@ -152,10 +152,10 @@ use chrono::*;
 fn main() {
     let mut reactor = Core::new().unwrap();
 
-    let wfi_1 = WaitForIt::new("I'm d资源onds(1));
-    println!("wfi_1 == {:?}", wfi_1);资源
+    let wfi_1 = WaitForIt::new("I'm done:".to_owned(), Duration::seconds(1));
+    println!("wfi_1 == {:?}", wfi_1);
 
-    let ret = reactor.run(wfi_1).unwr资源
+    let ret = reactor.run(wfi_1).unwrap();
     println!("ret == {:?}", ret);
 }
 ```
@@ -163,7 +163,7 @@ fn main() {
 运行!! 等待一秒我们将会看到结果：
 
 ```RUST
-Running `target/debug/tst_fut_create`资源
+Running `target/debug/tst_fut_create`
 wfi_1 == WaitForIt { message: "I\'m done:", until: 2017-11-07T16:07:06.382232234Z, polls: 0 }
 not ready yet --> WaitForIt { message: "I\'m done:", until: 2017-11-07T16:07:06.382232234Z, polls: 1 }
 ```
@@ -285,3 +285,76 @@ fn main() {
 ## Closing remarks
 
 下篇将会创建一个更`Real`的`Future`.
+
+## 可运行的代码
+
+```RUST
+extern crate chrono;
+extern crate futures;
+
+extern crate tokio_core;
+
+use futures::done;
+use futures::prelude::*;
+use futures::future::{err, ok};
+use tokio_core::reactor::Core;
+use std::error::Error;
+use futures::prelude::*;
+use futures::*;
+use chrono::prelude::*;
+use chrono::*;
+use futures::future::join_all;
+#[derive(Debug)]
+struct WaitForIt {
+    message: String,
+    until: DateTime<Utc>,
+    polls: u64,
+}
+
+impl WaitForIt {
+    pub fn new(message: String, delay: Duration) -> WaitForIt {
+        WaitForIt {
+            polls: 0,
+            message: message,
+            until: Utc::now() + delay,
+        }
+    }
+}
+
+impl Future for WaitForIt {
+    type Item = String;
+    type Error = Box<Error>;
+
+    fn poll(&mut self) -> Poll<Self::Item, Self::Error> {
+        let now = Utc::now();
+        if self.until < now {
+            Ok(Async::Ready(
+                format!("{} after {} polls!", self.message, self.polls),
+            ))
+        } else {
+            self.polls += 1;
+
+            println!("not ready yet --> {:?}", self);
+            futures::task::current().notify();
+            Ok(Async::NotReady)
+        }
+    }
+}
+
+fn main() {
+    let mut reactor = Core::new().unwrap();
+
+    let wfi_1 = WaitForIt::new("I'm done:".to_owned(), Duration::seconds(1));
+    println!("wfi_1 == {:?}", wfi_1);
+    let wfi_2 = WaitForIt::new("I'm done too:".to_owned(), Duration::seconds(1));
+    println!("wfi_2 == {:?}", wfi_2);
+
+    let v = vec![wfi_1, wfi_2];
+
+    let sel = join_all(v);
+
+    let ret = reactor.run(sel).unwrap();
+    println!("ret == {:?}", ret);
+}
+
+```
