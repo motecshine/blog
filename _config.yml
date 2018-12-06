@@ -13,7 +13,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://www.noob-phper.com/
+url: http://rustc.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -41,7 +41,7 @@ future: true
 highlight:
   enable: true
   line_number: true
-  auto_detect: false
+  auto_detect: true
   tab_replace:
   
 # Home page setting
@@ -74,7 +74,10 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: next
-
+excerpt:
+  depth: 10
+  excerpt_excludes: []
+  more_excludes: []
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
@@ -82,3 +85,4 @@ deploy:
   repo: git@github.com:motecshine/motecshine.github.io.git
   branch: master
   message:  deploy  blog
+
