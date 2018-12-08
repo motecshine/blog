@@ -9,7 +9,7 @@ tags: RUST future stream
 # Intro
 
 在上篇文章中我们学习了如何实现一个高效率的`Future`(尽量不阻塞, 只有在需要时才会`Unpark`我们的`Task`).  今天继续扩展我们的`Future`: 实现一个`Stream Trait`.
-`Stream`跟`Iterators`看起来很像: 他们随着时间的推移产生多个相同类型的输出, 与`Iterators`唯一的区别就是消费他们的方式不同. 让我们一起尝试使用`Reactor`来处理`Streams`吧.
+`Stream`跟`Iterators`看起来很像: 他们随着时间的推移产生多个相同类型的输出, 与`Iterators`唯一的区别就是消费的方式不同. 让我们一起尝试使用`Reactor`来处理`Streams`吧.
 
 ## ForEach combinator
 
@@ -108,6 +108,7 @@ let fut = my_stream.for_each(|num| {
     println!("num === {}", num);
     ok(())
 });
+```
 
 注意`ok(())`, 这段代码意味着我们返回的是个`Future`, 所以我们不仅可以使用`Reactor`执行`fut`, 也可以跟别的`Future`, 组合成`Future Chain`.
 
