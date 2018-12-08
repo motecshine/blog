@@ -1,6 +1,6 @@
 ---
 title: 深入浅出Rust Future - Part 2
-date: 2018-12-02 16:02:32
+date: 2018-12-03 16:02:32
 tags: Rust Future
 ---
 译自[Rust futures: an uneducated, short and hopefully not boring tutorial - Part 2](https://dev.to/mindflavor/rust-futures-an-uneducated-short-and-hopefully-not-boring-tutorial---part-2-8dd)
