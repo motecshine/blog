@@ -37,7 +37,7 @@ pub trait Stream {
 }
 ```
 
-这两个`Trait`都有很多的函数, 由于这些函数都有默认值, 因此如果你不需要它, 就无需实现他们. 在本篇文章里我们需要注意`poll`这个方法.
+这两个`Trait`都有很多的函数, 由于这些函数都有默认值, 因此如果你不需要它, 就无需实现他们. 在本篇文章里我们只关注`poll`这个方法.
 
 ```RUST
     // Future
@@ -48,8 +48,9 @@ pub trait Stream {
 ```
 
 `Stream Trait` 可以选择返回`item`, 但是`Future`必须返回.
+
 | Situation        | Future           | Stream  |
-|:---|:---|:---|
+|---|---|---|
 |Item to return ready| Ok(Async::Ready(t))|Ok(Async::Ready(Some(t)))|
 |Item to return not ready|Ok(Async::NotReady)|Ok(Async::NotReady)|
 |No more items to return|N.A.|Ok(Async::Ready(None))|
