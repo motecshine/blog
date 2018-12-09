@@ -13,7 +13,7 @@ tags: RUST future stream
 
 ## ForEach combinator
 
-我们使用一个名为`for_each`的组合器, 来代替我们手动迭代. 查询文档不难发现`future::stream`实现了`ForEach`, 所以我们不仅可以迭代, 也可以把`stream`放入`Reactor`, 把它作为`Future Chain`的一部分. 这看起来简直太酷了.现在让我们一步一步来实现一个简单的`Stream`.
+我们使用一个名为`for_each`的组合器, 来代替我们手动迭代消费`Stream`. 查询文档不难发现`future::stream`实现了`ForEach`, 所以我们不仅可以迭代, 也可以把`stream`放入`Reactor`, 把它作为`Future Chain`的一部分. 这看起来简直太酷了.现在让我们一步一步来实现一个简单的`Stream`.
 
 ## impl Stream
 
@@ -47,7 +47,7 @@ pub trait Stream {
     fn poll(&mut self) -> Poll<Option<Self::Item>, Self::Error>;
 ```
 
-`Stream Trait` 可以选择返回`item`, 但是`Future`必须返回.
+对比下`Future`与`Stream`两者`poll`函数的区别:
 
 | Situation        | Future           | Stream  |
 |---|---|---|
@@ -55,9 +55,6 @@ pub trait Stream {
 |Item to return not ready|Ok(Async::NotReady)|Ok(Async::NotReady)|
 |No more items to return|N.A.|Ok(Async::Ready(None))|
 |Error|Err(e)|Err(e)|
-
-通过上表我们可以总结出:
-> 如果你的`stream`的有些数据已经随时可用了,就返回`Ok(Async::Ready(Some(T)))`, 如果你的数据还没有准备好那么应该返回`Ok(Async::NotReady)`, 如果已经完成应该返回`Ok(Async::Ready(None))`, 和往常一样,如果出现了错误,应该返回`Err(e)`.
 
 ## Simple stream
 
@@ -98,8 +95,6 @@ impl Stream for MyStream {
 > 检查`MyStream.current`是否大于 `MyStream.max` 如果大于: 返回`Ok(Async::Ready(None))`, 否则`MyStream.current`自增`1`并且返回当前的值.
 
 ## Consume a stream
-
-使用`for_each`来消费`stream`:
 
 ```RUST
 let mut reactor = Core::new().unwrap();
@@ -216,7 +211,6 @@ ret == ((), ())
 ```
 
 这个结果不是唯一的, 你和我的输出也许有所不同, 如果我们没有派生等待3s的`Future`, 结果是否就会有所不同?
-
 
 ```RUST
 
