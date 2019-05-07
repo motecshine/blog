@@ -11,6 +11,7 @@ tags: RUST future stream
 在上篇文章中我们学习了如何实现一个高效率的`Future`(尽量不阻塞, 只有在需要时才会`Unpark`我们的`Task`).  今天继续扩展我们的`Future`: 实现一个`Stream Trait`.
 `Stream`跟`Iterators`看起来很像: 他们随着时间的推移产生多个相同类型的输出, 与`Iterators`唯一的区别就是消费的方式不同. 让我们一起尝试使用`Reactor`来处理`Streams`吧.
 
+<!-- more -->
 ## ForEach combinator
 
 我们使用一个名为`for_each`的组合器, 来代替我们手动迭代消费`Stream`. 查询文档不难发现`future::stream`实现了`ForEach`, 所以我们不仅可以迭代, 也可以把`stream`放入`Reactor`, 把它作为`Future Chain`的一部分. 这看起来简直太酷了.现在让我们一步一步来实现一个简单的`Stream`.

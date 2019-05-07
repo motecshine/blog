@@ -13,7 +13,7 @@ tags: k8s
   1. Docker 命令的使用
   2. kubectl 命令的使用
   3. Yaml的使用
-
+<!-- more -->
 ## 概念
 
 ##### Docker

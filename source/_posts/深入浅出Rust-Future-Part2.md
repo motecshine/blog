@@ -9,6 +9,7 @@ tags: Rust Future
 
 在这个系列的第一篇文章我们了解了如何使用`Rust Future`.但是只有我们彻底的了解`Future`并且操作得当才能发挥它真正的作用。这个系列的第二篇文章，我们将介绍如何避免`Future`里常见的陷阱。
 
+<!-- more -->
 ## Error troubles
 
 我们将`Future`组织成一个`链`很简单，只要通过`Rust Future`提供的`and_then`函数就可以了。但是在上一篇文章中我们使用了`Box<Error> trait`作为错误类型，绕过了编译器的检查。为什么我们没有使用更为详细的错误类型？原因很简单， 每个`Future`函数的错误返回都有可能不同.

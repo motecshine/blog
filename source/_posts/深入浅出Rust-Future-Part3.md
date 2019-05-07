@@ -10,6 +10,7 @@ tags: Rust future reactor
 
 在这篇文章中我们将会讨论和阐释`Reactor`是如何工作的.在上篇文章中我们，我们频繁的使用`Reactor`来执行我们的`Future`，但是并没有阐述它是如何工作的。现在是时候阐明它了。
 
+<!-- more -->
 ## Reactor? Loop?
 
 如果用一句话来描述`Reactor`，那应该是:

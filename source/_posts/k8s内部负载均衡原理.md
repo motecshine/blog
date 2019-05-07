@@ -8,7 +8,7 @@ tags: kubernetes k8s ingress service kube-proxy
 > 个人理解有限，如有错误，请及时指正。
 
 前前后后学习`kubernetes`已经有三个月了，一直想写一遍关于`kubernetes`内部实现的一系列文章来作为这三个月的总结，个人觉得`kubernetes`背后的架构理念以及技术会成为中大型公司架构的未来。我推荐可以先阅读下Google的[Large-scale cluster management at Google with Borg](https://storage.googleapis.com/pub-tools-public-publication-data/pdf/43438.pdf)技术文献，它是实现`kubernetes`的基石。
-
+<!-- more -->
 ## 准备
 
 在阐述原理之前我们需要先了解下`kubernetes`关于内部负载均衡的几个基础概念以及组件。

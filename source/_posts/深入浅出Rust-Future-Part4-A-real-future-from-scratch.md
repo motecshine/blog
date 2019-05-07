@@ -11,6 +11,7 @@ tags: Rust future
 上三篇文章我们阐述如何处理`Future`的基础知识， 我们现在能组织多个`Future`成为一个`Future chain`, 执行他们,甚至创建他们.但是到现在我们的`Future`还没有贴近我们日常的使用场景。(But, so far, our futures are not really delegating the execution to another thing.)
 在Part-3中我们用了粗暴的方法来`Unpark Future`。虽然解决了问题，并且使`Reactor`变得相对高效，但是这不是最佳实践。今天就让我们换种更好的方式去实现`Future`。
 
+<!-- more -->
 ## A timer future
 
 我们可以创建一个最简单的`Timer Future`(就像我们在Part-3章节所做的那样). 但这一次，我们不会立即`Unpark Future Task`, 而是一直`Parked`， 直到这个`Future`准备完为止. 我们该怎样实现？ 最简单的方式就是再委派一个线程。这个线程将等待一段时间， 然后`Unpark`我们的`Future Task`.
